@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=2.0"/>
+  <title>🎉 Campus Events </title>
+  <link rel="stylesheet" href="events.css" />
+  <style>
+    .event-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 7px;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      padding: 16px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+        <h1>🌐 Quick Seva</h1>
+        <h2>🌟 Campus Event Highlights</h2>
+        <p id="todayDate"></p>
+      </header>
+
+    <section>
+      <!--GSOC HACKATHON-->
+      <h2 class="section-title">🔥 Current Event</h2>
+      <div class="card glass hover-tilt">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYlTepGHsTQCG064arYuvPRLQCXlQMr2yFfQPY_wcRXjA6GoB9mkQ9101-BWr1zu85QbQjDQcTtg1pFieQfTsgCYko5py8bj49XUnEvCl34QvxR5rjPiiposOsyE8DX4wq3yDYYAfY7iGgRVdcPCvVKIw-Waep-VzTu79Mvq-RrdWKdl8N4XeWE3L6_bjw/s1200/WhatsApp%20Image%202025-04-14%20at%2013.30.50_5a5bd2b0.jpg" alt="GSOC Hackathon" class="event-image">
+        <h3>🚀 GSOC Hackathon</h3>
+        <p class="date">Ongoing – April 14, 2025</p>
+        <p>Build, collaborate, and innovate. Dive into open source and win cool swag!</p>
+      </div>
+
+      <!--Summerfest and google seminar-->
+      <h2 class="section-title">🕰 Past Event</h2>
+      <div class="card glass hover-tilt">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNBiSv9UEQrRneG8m0Ehd8FXWQLZZJk_vQzLARRXFfz_DNkYNQVcwGVzHa_7uiw4GRepVnGZ2z-XnCROmOme69g6A_UAYTEPLxza69hedaql0X3pOMSyb4i3iSvqawix-EwGOLa6pvwfZHw65H7R9LgN-LldlMfw1CQCeLBTsRsvvzKIAjH1q_PstpylZp/s590/WhatsApp%20Image%202025-04-14%20at%2013.30.49_0bfd6a7a.jpg" alt="Summerfest" class="event-image">
+        <h3>🎤 Summerfest</h3>
+        <p class="date">April 13, 2025</p>
+        <p>Music, fun, food, and vibes! A celebration to remember for all students.</p>
+      </div>
+
+      <div class="card glass hover-tilt">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZbP__dM07ukLV-AsH3ajWltR1_P3IAjaSWxJCHjWkQHZziv_A2XvMtN_axD-TdqPTBFo7dJ8bTiiFPu2NqVoaoKLMKqlIiaPHq6Z1zuGS6ezCFmxcompCDZyHJxkX5Ho8Es7vyXfuXYTSuHu_QQQZhaHS1PwDuWQfqBdDb7-UMAHaYp46DSos6TpfhXPv/s320/WhatsApp%20Image%202025-04-14%20at%2013.38.41_4f0bfa17.jpg" alt="Google Seminar" class="event-image">  
+        <h3>💻 Google Seminar</h3>
+        <p class="date">April 13, 2025</p>
+        <p>Learn, fun, and vibe!</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Campus Events | Built with 💙</p>
+    </footer>
+  </div>
+
+  <script>
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("todayDate").textContent = 📅 Today: ${today.toLocaleDateString(undefined, options)};
+  </script>
+</body>
+</html>

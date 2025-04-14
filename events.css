@@ -1,0 +1,103 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body */
+  body {
+    background: linear-gradient(135deg, #c3ecf8, #e4d9f9);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  #todayDate {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #444;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    margin: 40px 0 20px;
+    font-size: 1.6rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Glass Card Styles */
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* 3D Hover Effect */
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(3deg) rotateY(3deg) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Event Image */
+  .event-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  }
+  
+  /* Text Styling */
+  .card h3 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: 10px;
+  }
+  
+  .card .date {
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Seva - Delivery Request</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding-top: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fefefe);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .form-section {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      color: #0d6efd;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: #0d6efd;
+      border-radius: 12px;
+      padding: 10px 30px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #084fc1;
+      transform: scale(1.02);
+    }
+
+    .delivery-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .delivery-card {
+      background: rgba(255, 255, 255, 0.85);
+      border-left: 5px solid #0d6efd;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s;
+    }
+
+    .delivery-card:hover {
+      transform: scale(1.015);
+    }
+
+    .delivery-card h5 {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+
+    .price {
+      font-weight: 600;
+      color: #28a745;
+    }
+
+    .bi {
+      margin-right: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><i class="bi bi-box-seam-fill"></i> Quick Seva Delivery Request</h2>
+
+    <div class="form-section mb-5">
+      <form id="deliveryForm">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="pickupPoint" class="form-label">Pickup Point</label>
+            <select class="form-select" id="pickupPoint" required>
+                <option value="">Select Pickup Point</option>
+                <option>Boys Block 1</option>
+                <option>Boys Block 2</option>
+                <option>Block 3</option>
+                <option>Block 4</option>
+                <option>Block 5</option>
+                <option>Block 6</option>
+                <option>Girls Block 1</option>
+                <option>Girls Block 2</option>
+                <option>Special Block</option>
+                <option>Mayuri AB</option>
+                <option>Under Belly</option>
+                <option>Safal AB</option>
+                <option>Stationary Shop AB</option>
+                <option>AB Dakshin</option>
+                <option>Bistroo</option>
+                <option>Mayuri Special Block</option>
+                <option>Mayuri Night Canteen</option>
+                <option>Mayuri General Store</option>
+                <option>CRCL Night Canteen</option>
+              </select>
+              
+
+          <div class="col-md-6">
+            <label for="dropPoint" class="form-label">Drop Point</label>
+            <select class="form-select" id="dropPoint" required>
+                <option value="">Select Drop Point</option>
+                <option>Boys Block 1</option>
+                <option>Boys Block 2</option>
+                <option>Block 3</option>
+                <option>Block 4</option>
+                <option>Block 5</option>
+                <option>Block 6</option>
+                <option>Girls Block 1</option>
+                <option>Girls Block 2</option>
+                <option>Special Block</option>
+                <option>MPH</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="tel" id="phoneNumber" class="form-control" placeholder="Enter your phone" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="roomNumber" class="form-label">Room Number</label>
+            <input type="text" id="roomNumber" class="form-control" placeholder="Enter room number" required>
+          </div>
+
+          <div class="col-12">
+            <label for="customMessage" class="form-label">Custom Message</label>
+            <textarea id="customMessage" class="form-control" rows="3" placeholder="Optional message..."></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <label for="price" class="form-label">Total Price (₹)</label>
+            <input type="number" id="price" class="form-control" required>
+          </div>
+
+          <div class="col-12 text-center mt-3">
+            <button type="submit" class="btn btn-primary">Post Delivery</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h4 class="mb-3"><i class="bi bi-list-ul"></i> Current Delivery Requests</h4>
+    <div id="deliveryContainer" class="delivery-list"></div>
+  </div>
+
+  <footer>© 2025 Quick Seva | Built with ❤</footer>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('deliveryForm');
+      const container = document.getElementById('deliveryContainer');
+
+      loadDeliveries();
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const delivery = {
+          id: Date.now(),
+          pickup: document.getElementById('pickupPoint').value,
+          drop: document.getElementById('dropPoint').value,
+          phone: document.getElementById('phoneNumber').value,
+          room: document.getElementById('roomNumber').value,
+          message: document.getElementById('customMessage').value,
+          price: document.getElementById('price').value,
+          time: new Date().toLocaleString()
+        };
+
+        if (!/^\d{10}$/.test(delivery.phone)) {
+          alert('Please enter a valid 10-digit phone number.');
+          return;
+        }
+
+        saveDelivery(delivery);
+        displayDelivery(delivery);
+        form.reset();
+      });
+
+      function saveDelivery(delivery) {
+        let deliveries = JSON.parse(localStorage.getItem('deliveryPosts')) || [];
+        deliveries.push(delivery);
+        localStorage.setItem('deliveryPosts', JSON.stringify(deliveries));
+      }
+
+      function loadDeliveries() {
+        let deliveries = JSON.parse(localStorage.getItem('deliveryPosts')) || [];
+        deliveries.sort((a, b) => b.id - a.id);
+        deliveries.forEach(displayDelivery);
+      }
+
+      function displayDelivery(d) {
+        const div = document.createElement('div');
+        div.className = 'delivery-card';
+        div.innerHTML = `
+          <h5><i class="bi bi-geo-alt-fill"></i> ${d.pickup} ➜ ${d.drop}</h5>
+          <p><i class="bi bi-telephone-fill"></i> <strong>Phone:</strong> ${d.phone}</p>
+          <p><i class="bi bi-house-fill"></i> <strong>Room:</strong> ${d.room}</p>
+          <p><strong>Message:</strong> ${d.message || '—'}</p>
+          <p class="price"><i class="bi bi-currency-rupee"></i> ${d.price}</p>
+          <p><small><i class="bi bi-clock-history"></i> Posted on: ${d.time}</small></p>
+        `;
+        container.prepend(div);
+      }
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

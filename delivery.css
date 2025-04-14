@@ -1,0 +1,97 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f3f6f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  label {
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  input[type="text"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delivery-card {
+    background: #fafafa;
+    padding: 20px;
+    margin-top: 25px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+  }
+  
+  .delivery-card h4 {
+    margin-bottom: 10px;
+    color: #2d3436;
+  }
+  
+  .delivery-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      margin: 20px;
+      padding: 20px;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

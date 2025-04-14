@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quick Seva - Buy & Sell</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff7300;
+      --accent: #FF6584;
+      --background: linear-gradient(120deg, #f7c8c8, #e0eaff);
+      --card-bg: #ffffff;
+      --text-color: #2c2c2c;
+      --border-color: #ddd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--text-color);
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-top: 20px;
+      color: var(--primary);
+    }
+
+    form {
+      background: var(--card-bg);
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fdfdfd;
+      transition: border 0.3s ease;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #fce300;
+      transform: scale(1.02);
+    }
+
+    .items-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 20px 40px;
+      margin-top: 10px;
+    }
+
+    .item {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+    }
+
+    .item img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      background-color: #f9f9f9;
+      margin-bottom: 16px;
+    }
+
+    .item h3 {
+      font-size: 18px;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .item p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .items-container {
+        padding: 10px;
+      }
+
+      form {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quick Seva - Buy & Sell</h1>
+
+  <form id="uploadForm">
+    <label for="productName">Product Name</label>
+    <input type="text" id="productName" required>
+
+    <label for="productImage">Product Image</label>
+    <input type="file" id="productImage" accept="image/*" required>
+
+    <label for="price">Price (in ₹)</label>
+    <input type="text" id="price" required>
+
+    <label for="customText">Custom Message / Description</label>
+    <textarea id="customText" placeholder="Optional description..."></textarea>
+
+    <label for="sellerMobile">Seller's Mobile</label>
+    <input type="text" id="sellerMobile" required>
+
+    <label for="block">Block</label>
+    <select id="block" required>
+      <option value="">-- Select a Block --</option>
+      <option value="Block 1">Block 1</option>
+      <option value="Block 2">Block 2</option>
+      <option value="Block 3">Block 3</option>
+      <option value="Block 4">Block 4</option>
+      <option value="Block 5">Block 5</option>
+      <option value="Block 6">Block 6</option>
+      <option value="Large Dining Area">Large Dining Area</option>
+      <option value="Special Block">Special Block</option>
+      <option value="Girls Block 1">Girls Block 1</option>
+      <option value="Girls Block 2">Girls Block 2</option>
+    </select>
+
+    <button type="submit">Add Item</button>
+  </form>
+
+  <h2>Items for Sale</h2>
+  <div id="itemsContainer" class="items-container"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('uploadForm');
+      const itemsContainer = document.getElementById('itemsContainer');
+
+      loadItems();
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('productName').value;
+        const mobile = document.getElementById('sellerMobile').value;
+        const block = document.getElementById('block').value;
+        const price = document.getElementById('price').value;
+        const customText = document.getElementById('customText').value.trim();
+        const imageFile = document.getElementById('productImage').files[0];
+
+        if (!imageFile) {
+          alert('Please upload an image!');
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const img = new Image();
+          img.onload = function () {
+            const canvas = document.createElement('canvas');
+            const MAX_WIDTH = 400;
+            const scaleSize = MAX_WIDTH / img.width;
+            canvas.width = MAX_WIDTH;
+            canvas.height = img.height * scaleSize;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            const resizedImageData = canvas.toDataURL('image/jpeg', 0.8);
+            const item = { name, mobile, block, price, customText, image: resizedImageData };
+            saveItem(item);
+            displayItem(item);
+            form.reset();
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(imageFile);
+      });
+
+      function saveItem(item) {
+        let items = JSON.parse(localStorage.getItem('marketplaceItems')) || [];
+        items.push(item);
+        localStorage.setItem('marketplaceItems', JSON.stringify(items));
+      }
+
+      function loadItems() {
+        let items = JSON.parse(localStorage.getItem('marketplaceItems')) || [];
+        items.forEach(displayItem);
+      }
+
+      function displayItem(item) {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <h3>${item.name}</h3>
+          <p><strong>Price:</strong> ₹${item.price}</p>
+          <p><strong>Mobile:</strong> ${item.mobile}</p>
+          <p><strong>Block:</strong> ${item.block}</p>
+          ${item.customText ? `<p>${item.customText}</p>` : ''}
+        `;
+        itemsContainer.appendChild(div);
+      }
+    });
+  </script>
+
+</body>
+</html>

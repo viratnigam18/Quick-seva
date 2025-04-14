@@ -1,0 +1,119 @@
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  header h1 {
+    font-size: 2.5rem;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 900px;
+    background: white;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Form */
+  form label {
+    font-weight: 600;
+    margin-top: 20px;
+    display: block;
+    color: #444;
+  }
+  form input,
+  form select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  form input:focus,
+  form select:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.2);
+  }
+  form button {
+    margin-top: 25px;
+    padding: 14px 24px;
+    background-color: #4e73df;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  form button:hover {
+    background-color: #3b5bce;
+  }
+  
+  /* Items for Sale */
+  #itemsContainer {
+    max-width: 1100px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
+  
+  /* Item Card */
+  .item {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .item:hover {
+    transform: translateY(-5px);
+  }
+  .item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  .item h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .item p {
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  /* Responsive Enhancements */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    form button {
+      width: 100%;
+    }
+  }
+  
